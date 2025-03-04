@@ -145,22 +145,22 @@ nav ul li a:hover {
   background-color: #218838;
 }
 
-/* Shopping Cart */
+/* Shopping Cart - Fixed & Visible */
 #cart {
   position: fixed;
   top: 0;
-  right: -350px;
+  right: -100%; /* Initially hidden off-screen */
   width: 350px;
   background: white;
   height: 100%;
   box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   overflow-y: auto;
-  transition: right 0.3s ease-in-out;
+  transition: right 0.4s ease-in-out;
 }
 
 #cart.open {
-  right: 0;
+  right: 0; /* Slide-in when opened */
 }
 
 #cart-toggle-btn {
