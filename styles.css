@@ -10,22 +10,29 @@ body {
   background-color: #f4f4f4;
   color: #333;
   text-align: center;
+  padding-top: 60px;
 }
 
+/* Header & Navigation */
 header {
   background-color: #333;
   color: white;
   padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 nav ul {
   list-style: none;
   padding: 0;
-}
-
-nav ul li {
-  display: inline;
-  margin: 0 15px;
+  display: flex;
+  gap: 20px;
 }
 
 nav ul li a {
@@ -34,11 +41,43 @@ nav ul li a {
   font-size: 18px;
 }
 
+/* Mobile Navigation */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+      display: block;
+  }
+
+  nav ul {
+      display: none;
+      flex-direction: column;
+      background: #333;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+  }
+
+  nav ul.active {
+      display: flex;
+  }
+}
+
+/* Hero Section */
 #hero {
   background-color: #007bff;
   color: white;
   padding: 50px 20px;
-  margin-top: 10px;
+  margin-top: 60px;
 }
 
 .btn {
@@ -57,20 +96,22 @@ nav ul li a {
   color: white;
 }
 
+/* Product Section */
 #products {
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 15px;
 }
 
 .product-item {
   background: white;
   padding: 15px;
-  margin: 10px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   width: 250px;
+  text-align: center;
 }
 
 .product-item img {
@@ -94,7 +135,7 @@ nav ul li a {
   background-color: #218838;
 }
 
-/* Shopping Cart Styles */
+/* Shopping Cart */
 #cart {
   position: fixed;
   top: 0;
@@ -154,6 +195,7 @@ nav ul li a {
   margin-top: 10px;
 }
 
+/* Footer */
 footer {
   background-color: #333;
   color: white;
@@ -161,26 +203,12 @@ footer {
   margin-top: 20px;
 }
 
-/* Responsive Design for Mobile */
+/* Responsive Cart */
 @media (max-width: 768px) {
-  nav ul {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-  
-  nav ul li {
-      margin: 10px 0;
-  }
-  
-  .product-item {
-      width: 90%;
-  }
-  
   #cart {
       width: 100%;
   }
-  
+
   #cart-toggle-btn {
       top: 10px;
       right: 10px;

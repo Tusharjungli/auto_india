@@ -1,17 +1,17 @@
-// Sample product data (Can be replaced with real data later)
+// Sample product data
 const products = [
   { id: 1, name: "Brake Pads", price: 25, image: "brake-pads.jpg" },
   { id: 2, name: "Engine Oil", price: 40, image: "engine-oil.jpg" },
   { id: 3, name: "Car Battery", price: 90, image: "car-battery.jpg" }
 ];
 
-let cart = []; // Shopping cart array
+let cart = [];
 
-// Function to display products dynamically
+// Function to display products
 function loadProducts() {
   const productList = document.querySelector(".product-list");
-  productList.innerHTML = ""; // Clear previous content
-  
+  productList.innerHTML = "";
+
   products.forEach(product => {
       const productItem = document.createElement("div");
       productItem.classList.add("product-item");
@@ -34,20 +34,20 @@ function addToCart(productId) {
   }
 }
 
-// Function to display cart items
+// Function to update cart display
 function updateCart() {
   const cartList = document.getElementById("cart-list");
   const cartTotal = document.getElementById("cart-total");
-  cartList.innerHTML = ""; // Clear cart
+  cartList.innerHTML = "";
   let total = 0;
-  
+
   cart.forEach((item, index) => {
       total += item.price;
       const cartItem = document.createElement("li");
       cartItem.innerHTML = `${item.name} - $${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
       cartList.appendChild(cartItem);
   });
-  
+
   cartTotal.innerText = `Total: $${total}`;
 }
 
@@ -57,7 +57,21 @@ function removeFromCart(index) {
   updateCart();
 }
 
-// Run function on page load
+// Function to toggle the cart sidebar
+function toggleCart() {
+  const cart = document.getElementById("cart");
+  cart.classList.toggle("open");
+}
+
+// Function to toggle the mobile menu
+function toggleMenu() {
+  const navMenu = document.querySelector("nav ul");
+  navMenu.classList.toggle("active");
+}
+
+// Ensure all event listeners work on page load
 document.addEventListener("DOMContentLoaded", () => {
   loadProducts();
+  document.getElementById("cart-toggle-btn").addEventListener("click", toggleCart);
+  document.querySelector(".menu-toggle").addEventListener("click", toggleMenu);
 });
