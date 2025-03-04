@@ -73,6 +73,7 @@ nav ul li a:hover {
       left: 0;
       width: 100%;
       text-align: center;
+      padding: 10px 0;
   }
 
   nav ul.active {
@@ -151,7 +152,7 @@ nav ul li a:hover {
 #cart {
   position: fixed;
   top: 0;
-  right: -350px; /* Start off-screen */
+  right: -350px;
   width: 350px;
   height: 100vh;
   background: white;
