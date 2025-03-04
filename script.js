@@ -7,11 +7,20 @@ const products = [
 
 let cart = [];
 
+// Load cart from localStorage on page load
+function loadCart() {
+  const savedCart = localStorage.getItem("cart");
+  if (savedCart) {
+      cart = JSON.parse(savedCart);
+      updateCart();
+  }
+}
+
 // Function to display products
 function loadProducts() {
   const productList = document.querySelector(".product-list");
   productList.innerHTML = "";
-
+  
   products.forEach(product => {
       const productItem = document.createElement("div");
       productItem.classList.add("product-item");
@@ -30,6 +39,7 @@ function addToCart(productId) {
   const product = products.find(p => p.id === productId);
   if (product) {
       cart.push(product);
+      saveCart();
       updateCart();
   }
 }
@@ -40,21 +50,27 @@ function updateCart() {
   const cartTotal = document.getElementById("cart-total");
   cartList.innerHTML = "";
   let total = 0;
-
+  
   cart.forEach((item, index) => {
       total += item.price;
       const cartItem = document.createElement("li");
       cartItem.innerHTML = `${item.name} - $${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
       cartList.appendChild(cartItem);
   });
-
+  
   cartTotal.innerText = `Total: $${total}`;
 }
 
 // Function to remove items from cart
 function removeFromCart(index) {
   cart.splice(index, 1);
+  saveCart();
   updateCart();
+}
+
+// Save cart data to localStorage
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 // Function to toggle the cart sidebar
@@ -72,6 +88,7 @@ function toggleMenu() {
 // Ensure all event listeners work on page load
 document.addEventListener("DOMContentLoaded", () => {
   loadProducts();
+  loadCart();
   document.getElementById("cart-toggle-btn").addEventListener("click", toggleCart);
   document.querySelector(".menu-toggle").addEventListener("click", toggleMenu);
 });
