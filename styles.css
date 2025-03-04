@@ -11,6 +11,7 @@ body {
   color: #333;
   text-align: center;
   padding-top: 60px;
+  overflow-x: hidden;
 }
 
 /* Header & Navigation */
@@ -145,18 +146,19 @@ nav ul li a:hover {
   background-color: #218838;
 }
 
-/* Shopping Cart - Fixed & Visible */
+/* Shopping Cart - Always Visible When Open */
 #cart {
   position: fixed;
   top: 0;
   right: -100%; /* Initially hidden off-screen */
   width: 350px;
+  height: 100vh;
   background: white;
-  height: 100%;
   box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   overflow-y: auto;
   transition: right 0.4s ease-in-out;
+  z-index: 2000;
 }
 
 #cart.open {
@@ -173,6 +175,7 @@ nav ul li a:hover {
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
+  z-index: 2100;
 }
 
 #cart h2 {
@@ -214,7 +217,7 @@ footer {
   font-size: 14px;
 }
 
-/* Responsive Cart */
+/* Responsive Fix for Mobile */
 @media (max-width: 768px) {
   #cart {
       width: 100%;
